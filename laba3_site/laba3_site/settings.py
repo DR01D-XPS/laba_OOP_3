@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ej*79cq!f1x&2+4ze_in6y$37%dp4sxz7qa8#oj)!w1l!#y0l_'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-local-development-only-change-before-deployment")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -131,3 +131,19 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+# Local shop: the original Bisum CSS and scripts are retained.
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "[::1]"]
+STATIC_URL = "/assets/"
+STATICFILES_DIRS = [BASE_DIR / "assets"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+LANGUAGE_CODE = "ru-ru"
+TIME_ZONE = "Asia/Vladivostok"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "profile"
+LOGOUT_REDIRECT_URL = "home"
+TEMPLATES[0]["OPTIONS"]["context_processors"].append("main.context_processors.shop_context")

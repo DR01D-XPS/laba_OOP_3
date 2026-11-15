@@ -11,3 +11,5 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static('/assets/', document_root=os.path.join(settings.BASE_DIR, 'assets'))
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
