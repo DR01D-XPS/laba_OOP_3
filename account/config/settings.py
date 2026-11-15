@@ -77,9 +77,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Добавили для сбора статики
 STATICFILES_DIRS = [
-    BASE_DIR / 'templates' / 'Documentation',
+    BASE_DIR / 'assets',
 ]
 
 MAILERS = {
